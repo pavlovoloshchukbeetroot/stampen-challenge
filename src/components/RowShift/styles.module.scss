@@ -1,0 +1,22 @@
+.container {
+  display: inline-block;
+  position: relative;
+  min-height: 1em;
+  min-width: 1em;
+  height: max-content;
+  white-space: nowrap;
+  overflow: hidden;
+  .wrapper {
+    transition: transform .2s ease-in-out;
+    position: absolute;
+    display: flex;
+    &.vertical { flex-direction: column }
+    &.horizontal { flex-direction: row }
+  }
+}
+
+.item {
+  transition: opacity .3s ease-in-out;
+  opacity: 0;
+  &.active { opacity: 1 }
+}

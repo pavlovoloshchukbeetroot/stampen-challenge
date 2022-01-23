@@ -1,0 +1,44 @@
+@import "./constants.scss";
+
+/** Fonts import
+ * @see https://fonts.google.com/specimen/Bitter
+ */
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400&display=swap');
+
+html:root {
+  /** Leaking SASS variables to JS */
+  --font-base: #{$fontBase};
+  --font-mono: #{$fontMono};
+  @each $key, $value in $break-points {
+    --breakPoint-#{$key}: #{$value};
+  }
+  @each $color1, $item in $colors {
+    @if type-of($item) == 'map' {
+      @each $color2, $shade in $item {
+        --color-#{$color1}-#{$color2}: #{$shade};
+      }
+    } @else {
+      --color-#{$color1}: #{$item};
+    }
+  }
+}
+
+html, body {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  background-color: var(--color-navy-light);
+  font-family: var(--font-base);
+  font-size: 8px; // This is 1rem
+  color: var(--color-slate-regular);
+}
+* { box-sizing: border-box }
+button, a { cursor: pointer }
+a {
+  color: var(--color-gold);
+  text-decoration: none;
+}
+
+h1 {
+  color: var(--color-gold);
+  font-size: 6rem;
+}

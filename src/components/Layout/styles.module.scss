@@ -1,0 +1,150 @@
+@import "./constants.scss";
+
+.container {  
+  background: var(--color-navy-regular);
+  position: relative;
+  padding: $borderSize;
+  min-height: 100vh;
+  font-size: 3rem;
+  &::after {
+    z-index: 10;
+    content: "";
+    display: block;
+    position: fixed;
+    inset: 0;
+    border: $borderSize solid var(--color-navy-light);
+    pointer-events: none;
+  }
+}
+
+.header {
+  scroll-snap-align: start;
+  position: relative;
+  height: calc(100vh);
+  overflow: hidden;
+  .wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    padding: 10vw;
+    will-change: transform;
+    .logo { color: var(--color-gold) }
+  }
+  .hint {
+    position: absolute;
+    inset: auto 0 5vh 0;
+    color: var(--color-slate-dark);
+    font: 1.5rem/1 var(--font-mono);
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+    transition: opacity .2s ease-in-out;
+  }
+  .logo {
+    max-width: 400px;
+  }
+}
+.content {
+  padding-top: calc($navHeight + 2rem);
+  scroll-margin: $borderSize;
+  scroll-snap-align: start;
+  scroll-snap-stop: stop;
+}
+
+.navigation {
+  z-index: 1;
+  padding: 1rem;
+  position: sticky;
+  top: calc($borderSize - 1px); // gapfix
+  height: $navHeight;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: linear-gradient(to bottom,
+    var(--color-navy-regular), 
+    rgba(0, 0, 0, 0)
+  );
+  .logo {
+    position: relative;
+    z-index: 2;
+    height: 3rem;
+    color: var(--color-white);
+
+  }
+  .switcher {
+    position: relative;
+    z-index: 2;
+    background: none;
+    color: var(--color-white);
+    border: none;
+    font-size: 2rem;
+    font-family: var(--font-mono);
+  }
+  .menu {
+    display: flex;
+    gap: 3rem;
+    font: 2rem/1 var(--font-mono);
+    a {
+      color: var(--color-white);
+      &:hover { color: var(--color-gold) }
+    }
+    .item {
+      position: relative;
+      padding: 1rem 0;
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: auto 1rem 0 1rem;
+        border-top: 1px solid transparent;
+      }
+      &.active::after {
+        border-color: var(--color-white);
+      }
+    }
+  }
+  .overlay {
+    position: absolute;
+    width: calc(100% + 2px); // gapfix
+    height: 0;
+    inset: -1px -1px auto -1px;
+    z-index: 1;
+    background: var(--color-navy-light);
+    transition: .3s all .3s ease-in-out;
+    overflow: hidden;
+    display: flex;
+    .menu {
+      padding: $navHeight $borderSize 0 $borderSize;
+      flex-flow: column nowrap;
+      width: 100%;
+      .item {
+        transform: translateX(4rem);
+        opacity: 0;
+        transition: all .3s ease-in-out;
+        color: theme-color(slate, light);
+        margin: max(6vh, 6rem) 0;
+        font-size: 5rem;
+        margin-bottom: 2rem;
+        width: min-content;
+      }
+    }
+    &.open {
+      height: 100vh;
+      transition-delay: 0s;
+      .menu .item {
+        opacity: 1;
+        transform: none;
+        transition-delay: .3s;
+      }
+    }
+  }
+}
+
+.footer {
+  padding: 6rem 0;
+  text-align: center;
+  font-size: 2rem;
+  scroll-snap-align: end;
+}

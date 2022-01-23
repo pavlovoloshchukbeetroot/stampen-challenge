@@ -1,0 +1,101 @@
+.movie {
+  font-size: 2.5rem;
+  h1, h2 {
+    font-weight: bold;
+    color: var(--color-gold);
+  }
+  h1 { 
+    font-size: max(7vw, 5vh, 5rem);
+    margin: 4rem 0;
+  }
+  h2 {
+    font-size: max(3vw, 3vh, 3rem);
+    margin: 2rem 0;
+  }
+
+  .cover {
+    $margin: clamp(1rem, 5vw, 4rem);
+    position: relative;
+    width: clamp(20rem, 40vw, 40rem);
+    float: left;
+    margin: 0 $margin $margin 0;
+    img { 
+      max-width: 100%;
+      filter: grayscale(.9);
+      transition: all .3s ease-in-out
+    }
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      inset: 0;
+      background: var(--color-gold);
+      opacity: .2;
+      transition: all .3s ease-in-out
+    }
+    &:hover {
+      img { filter: grayscale(0) }
+      &::after { opacity: 0 }
+    }
+  }
+  .item + .item {
+    margin-top: 2rem;
+  }
+  .crawl {
+    margin: 4rem 0;
+    line-height: 1.4;
+  }
+  .characters {
+    position: relative;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    margin: 5rem 0;
+    display: flex;
+    overflow-x: auto;
+    gap: 3rem;
+  }
+  .clear {
+    clear: both;
+  }
+}
+
+.character {
+  scroll-snap-align: start;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 0;
+  text-align: center;
+  .photo {
+    position: relative;
+    overflow: hidden;
+    $size: max(20vw, 20vh);
+    border-radius: 50%;
+    background: var(--color-slate-dark);
+    width: $size;
+    height: $size;
+    img {
+      max-width: 100%;
+      filter: grayscale(.8);
+    }
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      inset: 0;
+      background: var(--color-gold);
+      opacity: .2;
+      transition: all .3s ease-in-out
+    }
+    &:hover {
+      img { filter: grayscale(0) }
+      &::after { opacity: 0 }
+    }
+  }
+  .name { 
+    max-width: 100%;
+    font-size: 80%;
+  }
+}

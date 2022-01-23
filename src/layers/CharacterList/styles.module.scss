@@ -1,0 +1,33 @@
+.characters {
+  min-height: 100vh;
+
+}
+
+.tip {
+  border: 1px dashed var(--color-white);
+  padding: 5rem 3rem;
+  text-align: center;
+  border-radius: 1rem;
+  margin-top: 5rem;
+}
+
+.list {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 5rem;
+  padding: 5rem 0;
+}
+
+.card {
+  flex-basis: 20rem;
+  flex-grow: 1;
+  .title {
+    color: var(--color-white);
+    padding: 1rem 0;
+    text-align: center;
+  }
+  img {
+    max-width: 100%;
+    border-radius: 1rem;
+  }
+}

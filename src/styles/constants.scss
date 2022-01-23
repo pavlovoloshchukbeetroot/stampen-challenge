@@ -1,0 +1,44 @@
+@use "sass:meta";
+@use "sass:map";
+
+$break-points: (
+  mobile:     480px,
+  tablet:     720px,
+  desktopS:   960px,
+  desktop:   1240px,
+  desktopHD: 1920px
+);
+
+@function breakpoint($name) {
+  @return map.get($break-points, $name);
+};
+
+$colors: (
+  navy: (
+    dark:     #020C1B,
+    regular:  #0A192F,
+    light:    #112240,
+    lightest: #233554
+  ),
+  slate: (
+    dark:     #495670,
+    regular:  #8892B0,
+    light:    #A8B2D1,
+    lightest: #CCD6F6
+  ),
+  white: #E6F1FF,
+  gold:  #FED33C,
+  green: #64FFDA,
+  blue:  #57CBFF
+);
+
+$fontBase: Bitter, Georgia;
+$fontMono: 'SF Mono', monospace;
+
+@function theme-color($name, $shade: 'regular') {
+  $target: map.get($colors, $name);
+  @if meta.type-of($target) == map {
+    @return map.get($target, $shade);
+  }
+  @return $target;
+};
